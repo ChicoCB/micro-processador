@@ -1,8 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set GHDL_PATH=C:\ghdl\GHDL\bin\ghdl.exe
-set FOLDER_PATH=C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds
+set GHDL_PATH=D:\UTFPR\5 periodo\arq comp\GHDL\bin\ghdl.exe
+set FOLDER_PATH=D:\Repositorios\micro-processador\vhds
 
 for /r "%FOLDER_PATH%" %%i in (*.vhd) do (
     set FILENAME=%%~ni
