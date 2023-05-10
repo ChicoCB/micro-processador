@@ -6,7 +6,7 @@ entity ULA is
 	port (
 		A : in unsigned(15 downto 0);
 		B : in unsigned(15 downto 0);
-		C : in unsigned(1 downto 0);
+		C : in unsigned(4 downto 0);
 		S : out unsigned(15 downto 0)
 	);
 end entity;
@@ -23,15 +23,14 @@ architecture ULA_arch of ULA is
 	 );
 	end component;
 	
-	component MUX_4x1
+	component MUX_10x1
 		port (
-			E0,E1,E2,E3 : in unsigned(15 downto 0);
-			C : in unsigned(1 downto 0);
+			E0,E1,E2,E3,E4,E5,E6,E7,E8,E9 : in unsigned(15 downto 0);
+			C : in unsigned(4 downto 0);
 			S : out unsigned(15 downto 0)
 		);
 	end component;
-	signal Soma,Sub,Igual,A_maior_B : unsigned(15 downto 0);
-	
+	signal Soma,Sub,Igual,A_maior_B,E4,E5,E6,E7,E8,E9 : unsigned(15 downto 0);
 	begin
 		
 		op: operations port map (
@@ -43,13 +42,25 @@ architecture ULA_arch of ULA is
 			A_maior_B=>A_maior_B
 		);
 		
-		mux: MUX_4x1 port map (
+		mux: MUX_10x1 port map (
 			E0 => Soma,
 			E1 => Sub,
 			E2 => Igual,
 			E3 => A_maior_B,
+			E4=>E4,
+			E5=>E5,
+			E6=>E6,
+			E7=>E7,
+			E8=>E8,
+			E9=>E9,
 			C=>C,
 			S=>S
 		);
+		E4 <= "0000000000000000";
+		E5 <= "0000000000000000";
+		E6 <= "0000000000000000";
+		E7 <= "0000000000000000";
+		E8 <= "0000000000000000";
+		E9 <= "0000000000000000";
 		
 end architecture;
