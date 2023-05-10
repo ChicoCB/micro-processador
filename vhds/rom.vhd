@@ -5,13 +5,13 @@ use ieee.numeric_std.all;
 entity rom is
     port(
         clk: in std_logic;
-        address: in unsigned (11 downto 0);
+        address: in unsigned (6 downto 0);
         data: out unsigned (13 downto 0)
     );
 end entity;
 
 architecture rom_arch of rom is
-    type mem is array (0 to 4095) of unsigned(13 downto 0);
+    type mem is array (0 to 127) of unsigned(13 downto 0);
     constant conteudo_rom : mem := (
         -- caso endereco => conteudo
         0 => "00000000001000",

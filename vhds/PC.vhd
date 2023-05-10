@@ -2,23 +2,23 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity flipflopD12bits is
+entity PC is
     port(
         clk, wrenable, reset: in std_logic;
-        data_in: in unsigned (11 downto 0);
-        data_out: out unsigned (11 downto 0)
+        data_in: in unsigned (6 downto 0);
+        data_out: out unsigned (6 downto 0)
     );
 end entity;
 
-architecture flipflopD12bits_arch of flipflopD12bits is
+architecture PC_arch of PC is
 
-    signal registro: unsigned (11 downto 0);
+    signal registro: unsigned (6 downto 0);
 
     begin
         process(clk, reset, wrenable)
         begin
             if(reset = '1') then
-                registro <= "000000000000";
+                registro <= "0000000";
             elsif wrEnable='1' then
                 if rising_edge(clk) then
                     registro <= data_in;
