@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity flipflopT is
     port(
-        Toggle: in std_logic;
+        data_in: in std_logic;
         data_out: out std_logic;
         clk: in std_logic;
         reset: in std_logic
@@ -12,19 +12,22 @@ entity flipflopT is
 end entity;
 
 architecture flipflopT_arch of flipflopT is
-	signal registro : std_logic;
+
+    signal registro: std_logic;
+
     begin
         process(clk, reset)
-		begin
+        begin
             if(reset = '1') then
                 registro <= '0';
             elsif(rising_edge(clk)) then
-                if(Toggle = '1') then
-                    registro <=  not registro;
+                if(data_in = '1') then
+                    registro <= not registro;
                 end if;
             end if;
         end process;
 
-	data_out <= registro;
+    data_out <= registro;
+
         
 end architecture;
