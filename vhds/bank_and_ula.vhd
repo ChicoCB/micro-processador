@@ -2,23 +2,23 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity top1 is
+entity bank_and_ula is
 	port (
 		regA,regB,regDest : in unsigned(2 downto 0);
-		wrEnable,reset,clk,muxControl : in std_logic;
-		operation : in unsigned(1 downto 0);
+		wrEnable,reset,clk,immediate : in std_logic;
+		operation : in unsigned(3 downto 0);
 		dataOut : out unsigned(15 downto 0);
 		extConst : in unsigned(15 downto 0)
 	);
 end entity;
 
 
-architecture top1_arch of top1 is
+architecture bank_and_ula_arch of bank_and_ula is
 	component ULA 
 		port (
 			A : in unsigned(15 downto 0);
 			B : in unsigned(15 downto 0);
-			C : in unsigned(1 downto 0);
+			C : in unsigned(3 downto 0);
 			S : out unsigned(15 downto 0)
 		);
 	end component;
@@ -67,7 +67,7 @@ architecture top1_arch of top1 is
 		mux : MUX_2x1 port map (
 			E0 => dataB,
 			E1 => extConst,
-			C => muxControl,
+			C => immediate,
 			S => ulaInB
 		);
 	

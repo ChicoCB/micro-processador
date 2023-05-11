@@ -8,8 +8,10 @@ entity decoder is
         opcode: out unsigned (3 downto 0);
         regA: out unsigned (2 downto 0);
         regB: out unsigned (2 downto 0);
-        address, const: out unsigned (6 downto 0);
-        jump_enable, bank_wrEnable: out std_logic
+        regDest: out unsigned (2 downto 0);
+        address: out unsigned (6 downto 0);
+        const: out unsigned (3 downto 0);
+        jump_enable, bank_wrEnable, immediate: out std_logic
     );
 end entity;
 
@@ -22,11 +24,15 @@ architecture decoder_arch of decoder is
         bank_wrEnable <= '0' when instruction(13 downto 10) = "1111" else
         '1';
 
-        opcode <= instruction(13 downto 10);
-        regA <= instruction(9 downto 7);
-        regB <= instruction(6 downto 4);
+        immediate <= '1' when instruction(13 downto 10) = "1001" or instruction(13 downto 10) = "0101" else 
+        '0';
 
-        const <= instruction(6 downto 0);
+
+        opcode <= instruction(13 downto 10);
+        regA <= instruction(6 downto 4);
+        regB <= instruction(3 downto 1);
+        regDest <= instruction(9 downto 7);
+        const <= instruction(3 downto 0);
         address <= instruction(6 downto 0);
 
 end architecture;

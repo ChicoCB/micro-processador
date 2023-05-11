@@ -15,8 +15,10 @@ architecture toplevel_arch of toplevel is
 			opcode: out unsigned (3 downto 0);
 			regA: out unsigned (2 downto 0);
 			regB: out unsigned (2 downto 0);
-			address, const: out unsigned (6 downto 0);
-			jump_enable, bank_wrEnable: out std_logic
+			regDest: out unsigned (2 downto 0);
+			address: out unsigned (6 downto 0);
+			const: out unsigned (3 downto 0);
+			jump_enable, bank_wrEnable, immediate: out std_logic
 		);
 	end component;
 
@@ -69,28 +71,37 @@ architecture toplevel_arch of toplevel is
         );
     end component;
 
-	component bancoDeRegs
+	component bank_and_ula
 		port(
-			wrEnable: in std_logic;
-			clk: in std_logic;
-			reset: in std_logic;
-			regA, regB, regDest: in unsigned (2 downto 0);
-			dataA, dataB : out unsigned(15 downto 0);
-			wrData : in unsigned(15 downto 0)
-			);
+			regA,regB,regDest : in unsigned(2 downto 0);
+			wrEnable,reset,clk,immediate : in std_logic;
+			operation : in unsigned(3 downto 0);
+			dataOut : out unsigned(15 downto 0);
+			extConst : in unsigned(15 downto 0)
+		);
 	end component;
 
     signal pc_to_adder, adder_to_mux, mux_to_pc, jump_address: unsigned (6 downto 0);
+	signal const: unsigned (3 downto 0);
+	signal extConst: unsigned (15 downto 0);
     signal rom_to_reg, reg_to_decoder: unsigned (13 downto 0);
     signal opcode: unsigned (3 downto 0);
-    signal jump_enable, pc_wrEnable, instReg_wrEnable: std_logic;
+    signal jump_enable, pc_wrEnable, bank_wrEnableDec, instReg_wrEnable, bank_wrEnable, immediate: std_logic;
+	signal regA, regB, regDest: unsigned (2 downto 0);
 	signal state : unsigned (1 downto 0);
 
 	begin
 		dec1 : decoder port map(
 			instruction => reg_to_decoder,
 			jump_enable => jump_enable,
-			address => jump_address
+			address => jump_address,
+			const => const,
+			bank_wrEnable => bank_wrEnableDec,
+			regA => regA,
+			regB => regB,
+			regDest => regDest,
+			immediate => immediate,
+			opcode => opcode
 		);
 
 		maq_estados1 : maq_estados port map(
@@ -132,7 +143,22 @@ architecture toplevel_arch of toplevel is
             dIn => rom_to_reg,
             dOut => reg_to_decoder
         );
+
+		core1: bank_and_ula port map(
+			clk => clk,
+			reset => reset,
+			immediate => immediate,
+			extConst => extConst,
+			wrEnable => bank_wrEnable,
+			regA => regA,
+			regB => regB,
+			regDest => regDest,
+			operation => opcode
+		);
 		
 		pc_wrEnable <= '1' when state = "10" else '0';
+		instReg_wrEnable <= '1' when state = "01" else '0';
+		bank_wrEnable <= '1' when state = "10" and bank_wrEnableDec = '1' else '0';
+		extConst <= "000000000000" & const;
 	
 end architecture;

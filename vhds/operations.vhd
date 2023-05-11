@@ -9,7 +9,10 @@ entity operations is
 		Soma: out unsigned(15 downto 0);
 		Sub: out unsigned(15 downto 0);
 		Igual: out unsigned(15 downto 0);
-		A_maior_B : out unsigned(15 downto 0)
+		A_maior_B : out unsigned(15 downto 0);
+		RetornaA : out unsigned(15 downto 0);
+		RetornaConst : out unsigned(15 downto 0);
+		Dec: out unsigned(15 downto 0)
 	);
 end entity;
 
@@ -20,4 +23,7 @@ architecture operations_arch of operations is
 		Sub <= A-B;
 		Igual <= "0000000000000001" when A=B else "0000000000000000";
 		A_maior_B <= "0000000000000000" when A<B else "0000000000000001";
+		RetornaA <= A;
+		RetornaConst <= B;
+		Dec <= A - 1;
 end architecture;
