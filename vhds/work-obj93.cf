@@ -1,82 +1,82 @@
 v 4
-file / "D:\Repositorios\micro-processador\vhds\unitadder.vhd" "13f9206a4fd642bedc3f85f31e85713b0a0d03a4" "20230511004103.298":
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\unitadder.vhd" "5510fabb66b75ff7ffb6a013b5590983b9c0b2f6" "20230512190839.448":
   entity unitadder at 1( 0) + 0 on 63;
-  architecture unitadder_arch of unitadder at 12( 207) + 0 on 64;
-file / "D:\Repositorios\micro-processador\vhds\ula.vhd" "3a7ba457fc10ebd3434fa3a3ae529022c148e1fb" "20230511004103.191":
+  architecture unitadder_arch of unitadder at 12( 218) + 0 on 64;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\ula.vhd" "e5428df9d08de698208414c855c187bab301955f" "20230512190839.387":
   entity ula at 1( 0) + 0 on 59;
-  architecture ula_arch of ula at 14( 236) + 0 on 60;
-file / "D:\Repositorios\micro-processador\vhds\toplevel.vhd" "3842ad9486413d1f9a992c0e7e83ac72b5a16425" "20230511004103.076":
+  architecture ula_arch of ula at 14( 249) + 0 on 60;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\toplevel.vhd" "2b10e8730f534a6ae21ad39c8b9cc834053407ca" "20230512190839.326":
   entity toplevel at 1( 0) + 0 on 55;
-  architecture toplevel_arch of toplevel at 11( 141) + 0 on 56;
-file / "D:\Repositorios\micro-processador\vhds\reg16bits_tb.vhd" "d04c3e027bcd1412db289b267da346f9cba8426b" "20230511004102.973":
+  architecture toplevel_arch of toplevel at 11( 151) + 0 on 56;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\reg16bits_tb.vhd" "a34e595674f3e769fb815b039c8acd44fba140f9" "20230512190839.264":
   entity reg16bits_tb at 1( 0) + 0 on 51;
-  architecture reg16bits_tb_arch of reg16bits_tb at 8( 99) + 0 on 52;
-file / "D:\Repositorios\micro-processador\vhds\reg14bits.vhd" "74e156e85133b04763391e5f501b28ebbed6dfa2" "20230511004102.870":
+  architecture reg16bits_tb_arch of reg16bits_tb at 8( 106) + 0 on 52;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\reg14bits.vhd" "74e156e85133b04763391e5f501b28ebbed6dfa2" "20230512190839.200":
   entity reg14bits at 1( 0) + 0 on 47;
   architecture reg14bits_arch of reg14bits at 14( 268) + 0 on 48;
-file / "D:\Repositorios\micro-processador\vhds\operations.vhd" "dd13068f9742d2cb82ecab8982a9a4352326a929" "20230511004102.770":
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\operations.vhd" "cee9a1809b922a76e790163be11218a9acb73723" "20230512190839.137":
   entity operations at 1( 0) + 0 on 43;
-  architecture operations_arch of operations at 20( 444) + 0 on 44;
-file / "D:\Repositorios\micro-processador\vhds\MUX_4x1.vhd" "837b6e10e7842d4e24ab3d31768c02ddf6f627d6" "20230511004102.670":
+  architecture operations_arch of operations at 18( 368) + 0 on 44;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\MUX_4x1.vhd" "90e09c1e363d8411fc0c1a39c81f877fb24b65a8" "20230512190839.077":
   entity mux_4x1 at 1( 0) + 0 on 39;
-  architecture mux_4x1_arch of mux_4x1 at 13( 219) + 0 on 40;
-file / "D:\Repositorios\micro-processador\vhds\MUX_10x1.vhd" "a1a0bc60dfc1dd072c5385b5a84dd5a30e92f1d3" "20230511004102.566":
+  architecture mux_4x1_arch of mux_4x1 at 13( 231) + 0 on 40;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\MUX_10x1.vhd" "3a0968f7dfc07ee04c14714a21c191a8c33534a0" "20230512190839.018":
   entity mux_10x1 at 1( 0) + 0 on 35;
-  architecture mux_10x1_arch of mux_10x1 at 13( 238) + 0 on 36;
-file / "D:\Repositorios\micro-processador\vhds\mux12bits_tb.vhd" "64fbda6fb347f3837aaf773d9722260694c9fa4b" "20230511004102.469":
+  architecture mux_10x1_arch of mux_10x1 at 13( 250) + 0 on 36;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\mux12bits_tb.vhd" "444d665479eb5e30eaec70488d1b07d1660599b6" "20230512190838.952":
   entity mux12bits_tb at 1( 0) + 0 on 31;
-  architecture mux12bits_tb_arch of mux12bits_tb at 8( 106) + 0 on 32;
-file / "D:\Repositorios\micro-processador\vhds\maq_estados.vhd" "8e14a33c9f825fd03a2f9dc6ce21a2d9564543f5" "20230511004102.364":
+  architecture mux12bits_tb_arch of mux12bits_tb at 8( 113) + 0 on 32;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\maq_estados.vhd" "1d9f66ac270a31e5e12efde53a74bb3f54bb0592" "20230512190838.889":
   entity maq_estados at 1( 0) + 0 on 27;
-  architecture a_maq_estados of maq_estados at 14( 179) + 0 on 28;
-file / "D:\Repositorios\micro-processador\vhds\controlunit_tb.vhd" "f3a701bdc30f1e9660345528718aa82f678587db" "20230511004102.255":
+  architecture a_maq_estados of maq_estados at 14( 192) + 0 on 28;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\controlunit_tb.vhd" "2b4eca570b2cbb77f753bc5c6d265d5e867b8a9d" "20230512190838.826":
   entity controlunit_tb at 1( 0) + 0 on 23;
-  architecture controlunit_tb_arch of controlunit_tb at 8( 101) + 0 on 24;
-file / "D:\Repositorios\micro-processador\vhds\bank_and_ula.vhd" "ccf87ec0d4aaa5fa75dcb917f0851af18ef6b4f6" "20230511004102.133":
+  architecture controlunit_tb_arch of controlunit_tb at 8( 108) + 0 on 24;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\bank_and_ula.vhd" "ccf87ec0d4aaa5fa75dcb917f0851af18ef6b4f6" "20230512190838.766":
   entity bank_and_ula at 1( 0) + 0 on 19;
   architecture bank_and_ula_arch of bank_and_ula at 16( 344) + 0 on 20;
-file / "D:\Repositorios\micro-processador\vhds\bankUla.vhd" "3976797599d71a6998febf75b0498fa68453fd28" "20230511004102.024":
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\bankUla.vhd" "5fe1995ed00181b74eaa8d84bcf5fd9e828553b2" "20230512190838.704":
   entity bankula at 1( 0) + 0 on 15;
-  architecture bankula_arch of bankula at 15( 362) + 0 on 16;
-file / "D:\Repositorios\micro-processador\vhds\bancoDeRegs.vhd" "a18ee649d3b672843c8a73718acc5aee9641ed5e" "20230511004101.920":
+  architecture bankula_arch of bankula at 15( 376) + 0 on 16;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\bancoDeRegs.vhd" "c4ba9b5024ba199f1243636254ff2bc355df7a71" "20230512190838.640":
   entity bancoderegs at 1( 0) + 0 on 11;
-  architecture bancoderegs_arch of bancoderegs at 17( 319) + 0 on 12;
-file / "D:\Repositorios\micro-processador\vhds\bancoDeRegs_tb.vhd" "950e89a636727cb5a6f57fa83e722734578722ce" "20230511004101.974":
+  architecture bancoderegs_arch of bancoderegs at 17( 335) + 0 on 12;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\bancoDeRegs_tb.vhd" "a8b8551a2748f26a808fb6a1de5c6ba23307bb9e" "20230512190838.672":
   entity bancoderegs_tb at 1( 0) + 0 on 13;
-  architecture bancoderegs_tb_arch of bancoderegs_tb at 9( 103) + 0 on 14;
-file / "D:\Repositorios\micro-processador\vhds\bankUla_tb.vhd" "2e2fb759967fd3d4274cd8b4ec33b22fb78178fa" "20230511004102.077":
+  architecture bancoderegs_tb_arch of bancoderegs_tb at 9( 111) + 0 on 14;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\bankUla_tb.vhd" "07af1f6fde8e0cee536143b06f8a95a77e006712" "20230512190838.734":
   entity bankula_tb at 1( 0) + 0 on 17;
-  architecture bankula_tb_arch of bankula_tb at 8( 97) + 0 on 18;
-file / "D:\Repositorios\micro-processador\vhds\controlunit.vhd" "14d026782215c22ccdffdba05467e461d680bafe" "20230511004102.196":
+  architecture bankula_tb_arch of bankula_tb at 8( 104) + 0 on 18;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\controlunit.vhd" "180d0a9cc5fe1017317aeb636a63b3f29571defc" "20230512190838.796":
   entity controlunit at 1( 0) + 0 on 21;
-  architecture controlunit_arch of controlunit at 12( 201) + 0 on 22;
-file / "D:\Repositorios\micro-processador\vhds\decoder.vhd" "7b0ca74422827fce2fcc9c300d103b802c864939" "20230511004102.307":
+  architecture controlunit_arch of controlunit at 12( 212) + 0 on 22;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\decoder.vhd" "a14c309eecd9b190c5f74be4e05d6df4c679ec31" "20230512190838.859":
   entity decoder at 1( 0) + 0 on 25;
-  architecture decoder_arch of decoder at 18( 499) + 0 on 26;
-file / "D:\Repositorios\micro-processador\vhds\mux12bits.vhd" "8243b0212a76088e9f051e83983638b347768100" "20230511004102.418":
+  architecture decoder_arch of decoder at 16( 414) + 0 on 26;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\mux12bits.vhd" "d8e00b627eea4956f276812e30a58f0f3afd6446" "20230512190838.921":
   entity mux12bits at 1( 0) + 0 on 29;
-  architecture mux12bits_arch of mux12bits at 14( 282) + 0 on 30;
-file / "D:\Repositorios\micro-processador\vhds\mux7bits.vhd" "eed3e9b3956666e1940c776b3cd6f11304c7fc93" "20230511004102.518":
+  architecture mux12bits_arch of mux12bits at 14( 295) + 0 on 30;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\mux7bits.vhd" "21479c5a20141a7e57e9bf5466a07601368aeab2" "20230512190838.983":
   entity mux7bits at 1( 0) + 0 on 33;
-  architecture mux7bits_arch of mux7bits at 14( 278) + 0 on 34;
-file / "D:\Repositorios\micro-processador\vhds\MUX_2x1.vhd" "3d8c56835ef6747824f3b28b037e2a71bf633f85" "20230511004102.620":
+  architecture mux7bits_arch of mux7bits at 14( 291) + 0 on 34;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\MUX_2x1.vhd" "400893a21d48cd56ca6c5af2af6964ad212409d5" "20230512190839.046":
   entity mux_2x1 at 1( 0) + 0 on 37;
-  architecture mux_2x1_arch of mux_2x1 at 13( 202) + 0 on 38;
-file / "D:\Repositorios\micro-processador\vhds\MUX_8x1.vhd" "e2ba95c2df1801884a2ef71097456f1de72e6196" "20230511004102.720":
+  architecture mux_2x1_arch of mux_2x1 at 13( 214) + 0 on 38;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\MUX_8x1.vhd" "ef2156aa27fc596b1017cdaba01b4eb2d78766e2" "20230512190839.108":
   entity mux_8x1 at 1( 0) + 0 on 41;
-  architecture mux_8x1_arch of mux_8x1 at 13( 231) + 0 on 42;
-file / "D:\Repositorios\micro-processador\vhds\PC.vhd" "1eb29c923f8062047d6dc9386b7f334dbf74234c" "20230511004102.822":
+  architecture mux_8x1_arch of mux_8x1 at 13( 243) + 0 on 42;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\PC.vhd" "343ec0ed9f7ff4b417053189813f6caaf6db5be9" "20230512190839.169":
   entity pc at 1( 0) + 0 on 45;
-  architecture pc_arch of pc at 13( 244) + 0 on 46;
-file / "D:\Repositorios\micro-processador\vhds\reg16bits.vhd" "4a601f8f538da6c1fc11b4361536522dcf85079e" "20230511004102.920":
+  architecture pc_arch of pc at 13( 256) + 0 on 46;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\reg16bits.vhd" "5d7e52e5b324d816e1d0a7ab20ee0777cd7b6cf6" "20230512190839.233":
   entity reg16bits at 1( 0) + 0 on 49;
-  architecture reg16bits_arch of reg16bits at 14( 255) + 0 on 50;
-file / "D:\Repositorios\micro-processador\vhds\rom.vhd" "cf45fe6e7f425d229c52db5b99796d4420034794" "20230511004103.023":
+  architecture reg16bits_arch of reg16bits at 14( 268) + 0 on 50;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\rom.vhd" "18c5aea70768c4bc6d1d99eec2fe792ca2ffd105" "20230512190839.297":
   entity rom at 1( 0) + 0 on 53;
-  architecture rom_arch of rom at 13( 225) + 0 on 54;
-file / "D:\Repositorios\micro-processador\vhds\toplevel_tb.vhd" "3f7ca45d3b5aeb6d9dcd3f2e43a13baad279e687" "20230511004103.141":
+  architecture rom_arch of rom at 13( 237) + 0 on 54;
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\toplevel_tb.vhd" "3f7ca45d3b5aeb6d9dcd3f2e43a13baad279e687" "20230512190839.357":
   entity toplevel_tb at 1( 0) + 0 on 57;
   architecture toplevel_tb_arch of toplevel_tb at 8( 105) + 0 on 58;
-file / "D:\Repositorios\micro-processador\vhds\ula_tb.vhd" "44010d45fd3112ae645486c5e1d43b2be62c42dc" "20230511004103.248":
+file / "C:\Users\franc.ACERASPIRE5\Desktop\micro-processador\vhds\ula_tb.vhd" "2419347cdce1fcbca1f799d7f701e242e1df0709" "20230512190839.418":
   entity ula_tb at 1( 0) + 0 on 61;
-  architecture ula_tb_arch of ula_tb at 8( 94) + 0 on 62;
+  architecture ula_tb_arch of ula_tb at 8( 101) + 0 on 62;

@@ -13,11 +13,9 @@ architecture toplevel_arch of toplevel is
 		port(
 			instruction: in unsigned (13 downto 0);
 			opcode: out unsigned (3 downto 0);
-			regA: out unsigned (2 downto 0);
-			regB: out unsigned (2 downto 0);
+			regSrc: out unsigned (2 downto 0);
 			regDest: out unsigned (2 downto 0);
-			address: out unsigned (6 downto 0);
-			const: out unsigned (3 downto 0);
+			const: out unsigned (6 downto 0);
 			jump_enable, bank_wrEnable, immediate: out std_logic
 		);
 	end component;
@@ -81,24 +79,21 @@ architecture toplevel_arch of toplevel is
 		);
 	end component;
 
-    signal pc_to_adder, adder_to_mux, mux_to_pc, jump_address: unsigned (6 downto 0);
-	signal const: unsigned (3 downto 0);
+    signal pc_to_adder, adder_to_mux, mux_to_pc, const: unsigned (6 downto 0);
 	signal extConst: unsigned (15 downto 0);
     signal rom_to_reg, reg_to_decoder: unsigned (13 downto 0);
     signal opcode: unsigned (3 downto 0);
     signal jump_enable, pc_wrEnable, bank_wrEnableDec, instReg_wrEnable, bank_wrEnable, immediate: std_logic;
-	signal regA, regB, regDest: unsigned (2 downto 0);
+	signal regSrc, regDest: unsigned (2 downto 0);
 	signal state : unsigned (1 downto 0);
 
 	begin
 		dec1 : decoder port map(
 			instruction => reg_to_decoder,
 			jump_enable => jump_enable,
-			address => jump_address,
 			const => const,
 			bank_wrEnable => bank_wrEnableDec,
-			regA => regA,
-			regB => regB,
+			regSrc => regSrc,
 			regDest => regDest,
 			immediate => immediate,
 			opcode => opcode
@@ -132,7 +127,7 @@ architecture toplevel_arch of toplevel is
         mux: mux7bits port map(
             control => jump_enable,
             data_A => adder_to_mux,
-            data_B => jump_address,
+            data_B => const,
             data_out => mux_to_pc
         );
 
@@ -150,8 +145,8 @@ architecture toplevel_arch of toplevel is
 			immediate => immediate,
 			extConst => extConst,
 			wrEnable => bank_wrEnable,
-			regA => regA,
-			regB => regB,
+			regA => regDest,
+			regB => regSrc,
 			regDest => regDest,
 			operation => opcode
 		);
@@ -159,6 +154,6 @@ architecture toplevel_arch of toplevel is
 		pc_wrEnable <= '1' when state = "10" else '0';
 		instReg_wrEnable <= '1' when state = "01" else '0';
 		bank_wrEnable <= '1' when state = "10" and bank_wrEnableDec = '1' else '0';
-		extConst <= "000000000000" & const;
+		extConst <= "000000000" & const;
 	
 end architecture;
