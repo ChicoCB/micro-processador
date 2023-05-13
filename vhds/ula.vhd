@@ -52,14 +52,12 @@ architecture ULA_arch of ULA is
 			E4 => Inc,
 			E5 => Dec,
 			E6 => Mov,
-			E7 => E7,
+			E7 => Mov,
 			E8 => E8,
 			E9 => E9,
 			C=>C,
 			S=>S
 		);
-		
-		E7 <= "0000000000000000";
 		E8 <= "0000000000000000";
 		E9 <= "0000000000000000";
 		
