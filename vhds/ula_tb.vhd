@@ -27,9 +27,9 @@ architecture ula_tb_arch of ula_tb is
 		
 	process 
 		begin
-			Controle <= "00";
+			Controle <= "01";
 			EntradaA <= "0000000000000011";
-			EntradaB <= "0000000000000001";
+			EntradaB <= "0000000000000101";
 			wait for 10 ns;
 			Controle <= "01";
 			EntradaA <= "0000000000000011";

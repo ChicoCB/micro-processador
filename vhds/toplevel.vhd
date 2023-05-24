@@ -154,6 +154,6 @@ architecture toplevel_arch of toplevel is
 		pc_wrEnable <= '1' when state = "10" else '0';
 		instReg_wrEnable <= '1' when state = "01" else '0';
 		bank_wrEnable <= '1' when state = "10" and bank_wrEnableDec = '1' else '0';
-		extConst <= "000000000" & const;
+		extConst <= "000000000" & const when const(6) = '0' else "111111111" & const;
 	
 end architecture;

@@ -14,17 +14,12 @@ architecture rom_arch of rom is
     type mem is array (0 to 127) of unsigned(13 downto 0);
     constant conteudo_rom : mem := (
         -- caso endereco => conteudo
-        0 => "01110110000101", --MOV R3,5
-        1 => "01111000001000", --MOV R4,8
-        2 => "01100010110000", --MOV A,R3
-        3 => "00000011000000", --ADD A,R4
-        4 => "01101010010000", --MOV R5,A
-        5 => "01011010000000", --DEC R5
-        6 => "11110000010100", --JMP 0x010100
-        20 => "01100011010000", --MOV A,R5
-        21 => "01100110010000", --MOV R3,A
-		22 => "11110000000010", --JMP 0x0000010
-        -- abaixo: casos omissos => (zero em todos os bits)
+		0 => "0111_011_0000000", --MOV R3,0
+        1 => "0111_100_0000000", --MOV R4,0
+		2 => "0110_001_100_1000", --MOV A,R4
+		3 => "0000_001_011_1000", --ADD A,R3
+		4 => "0110_100_001_1000", --MOV R4,A
+		4 => "0100_011_0011000", --INC R3
         others => (others=>'0')
     );
     begin
