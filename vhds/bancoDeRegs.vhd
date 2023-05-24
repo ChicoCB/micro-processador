@@ -9,6 +9,7 @@ entity bancoDeRegs is
 		reset: in std_logic;
 		regA, regB, regDest: in unsigned (2 downto 0);
 		dataA, dataB : out unsigned(15 downto 0);
+		flagZout : out std_logic;
 		wrData : in unsigned(15 downto 0)
 		);
 		
@@ -32,8 +33,18 @@ architecture bancoDeRegs_arch of bancoDeRegs is
 	);
 	end component;
 	
-	signal r0out,r1out,r2out,r3out,r4out,r5out,r6out,r7out : unsigned (15 downto 0); --Saídas de cada reg
+	component reg1bit
+		port( clk : in std_logic;
+			 reset : in std_logic;
+			 wrEnable : in std_logic;
+			 dIn : in std_logic;
+			 dOut : out std_logic
+		);
+	end component;
+	
+	signal r0out,r1out,r2out,r3out,r4out,r5out,r6out,r7out: unsigned (15 downto 0); --Saídas de cada reg
 	signal wrEnableR1,wrEnableR2,wrEnableR3,wrEnableR4,wrEnableR5,wrEnableR6,wrEnableR7 : std_logic; --wrEnable de cada reg
+	signal dInZ : std_logic; --Sinais flag Z
 
 	begin
 	
@@ -102,6 +113,14 @@ architecture bancoDeRegs_arch of bancoDeRegs is
 			dOut => r7out,
 			wrEnable=>wrEnableR7
 		);
+		flagZ: reg1bit port map (
+			dIn => dInZ,
+			clk => clk,
+			reset=>reset,
+			dOut => flagZout,
+			wrEnable=>wrEnable
+		);
+		
 		muxA: MUX_8x1 port map ( --Mux que decide a saída dataA
 			E0 => r0out,
 			E1 => r1out,
@@ -126,5 +145,7 @@ architecture bancoDeRegs_arch of bancoDeRegs is
 			C => regB,
 			S => dataB
 		);
+		
+		dInZ <= '1' when wrData = "0000000000000000" else '0'; --Seta flagZ
 	
 end architecture;

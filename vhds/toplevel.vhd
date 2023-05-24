@@ -16,7 +16,7 @@ architecture toplevel_arch of toplevel is
 			regSrc: out unsigned (2 downto 0);
 			regDest: out unsigned (2 downto 0);
 			const: out unsigned (6 downto 0);
-			jump_enable, bank_wrEnable, immediate: out std_logic
+			jump_enable_JMP,jump_enable_Z, bank_wrEnable, immediate: out std_logic
 		);
 	end component;
 
@@ -73,25 +73,27 @@ architecture toplevel_arch of toplevel is
 		port(
 			regA,regB,regDest : in unsigned(2 downto 0);
 			wrEnable,reset,clk,immediate : in std_logic;
+			flagZout : out std_logic;
 			operation : in unsigned(3 downto 0);
 			dataOut : out unsigned(15 downto 0);
 			extConst : in unsigned(15 downto 0)
 		);
 	end component;
 
-    signal pc_to_adder, adder_to_mux, mux_to_pc, const: unsigned (6 downto 0);
+    signal pc_to_adder, adder_to_mux, mux_to_pc,const_dec,const: unsigned (6 downto 0);
 	signal extConst: unsigned (15 downto 0);
     signal rom_to_reg, reg_to_decoder: unsigned (13 downto 0);
     signal opcode: unsigned (3 downto 0);
-    signal jump_enable, pc_wrEnable, bank_wrEnableDec, instReg_wrEnable, bank_wrEnable, immediate: std_logic;
+    signal jump_enable_Z,flagZout,jump_enable_JMP,jump_enable, pc_wrEnable, bank_wrEnableDec, instReg_wrEnable, bank_wrEnable, immediate: std_logic;
 	signal regSrc, regDest: unsigned (2 downto 0);
 	signal state : unsigned (1 downto 0);
 
 	begin
 		dec1 : decoder port map(
 			instruction => reg_to_decoder,
-			jump_enable => jump_enable,
-			const => const,
+			jump_enable_Z => jump_enable_Z,
+			jump_enable_JMP => jump_enable_JMP,
+			const => const_dec,
 			bank_wrEnable => bank_wrEnableDec,
 			regSrc => regSrc,
 			regDest => regDest,
@@ -148,9 +150,12 @@ architecture toplevel_arch of toplevel is
 			regA => regDest,
 			regB => regSrc,
 			regDest => regDest,
+			flagZout=>flagZout,
 			operation => opcode
 		);
 		
+		const <=  (pc_to_adder + const_dec) when (jump_enable_Z = '1' and flagZout = '0') else const_dec;
+		jump_enable <= '1' when jump_enable_JMP = '1' OR (jump_enable_Z = '1' and flagZout = '0') else '0';
 		pc_wrEnable <= '1' when state = "10" else '0';
 		instReg_wrEnable <= '1' when state = "01" else '0';
 		bank_wrEnable <= '1' when state = "10" and bank_wrEnableDec = '1' else '0';

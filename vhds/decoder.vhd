@@ -9,15 +9,18 @@ entity decoder is
         regSrc: out unsigned (2 downto 0);
         regDest: out unsigned (2 downto 0);
         const: out unsigned (6 downto 0);
-        jump_enable, bank_wrEnable, immediate: out std_logic
+        jump_enable_JMP,jump_enable_Z, bank_wrEnable, immediate: out std_logic
     );
 end entity;
 
 architecture decoder_arch of decoder is
 
     begin
-        jump_enable <= '1' when instruction(13 downto 10) = "1111" else
+        jump_enable_JMP <= '1' when instruction(13 downto 10) = "1111" else
         '0';
+		
+		jump_enable_Z <= '1' when instruction(13 downto 10) = "1110" else
+		'0';
         
         bank_wrEnable <= '0' when instruction(13 downto 10) = "1111" else
         '1';

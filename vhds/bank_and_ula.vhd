@@ -6,6 +6,7 @@ entity bank_and_ula is
 	port (
 		regA,regB,regDest : in unsigned(2 downto 0);
 		wrEnable,reset,clk,immediate : in std_logic;
+		flagZout : out std_logic;
 		operation : in unsigned(3 downto 0);
 		dataOut : out unsigned(15 downto 0);
 		extConst : in unsigned(15 downto 0)
@@ -32,12 +33,13 @@ architecture bank_and_ula_arch of bank_and_ula is
 	end component;
 	
 	component bancoDeRegs 
-		port (
+		port(
 			wrEnable: in std_logic;
 			clk: in std_logic;
 			reset: in std_logic;
 			regA, regB, regDest: in unsigned (2 downto 0);
 			dataA, dataB : out unsigned(15 downto 0);
+			flagZout : out std_logic;
 			wrData : in unsigned(15 downto 0)
 		);
 	end component;
@@ -54,6 +56,7 @@ architecture bank_and_ula_arch of bank_and_ula is
 			regDest => regDest,
 			dataA => ulaInA,
 			dataB => dataB,
+			flagZout=>flagZout,
 			wrData => ulaResult
 		);
 		

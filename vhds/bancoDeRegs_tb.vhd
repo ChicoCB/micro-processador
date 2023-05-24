@@ -8,19 +8,20 @@ end;
 
 architecture bancoDeRegs_tb_arch of bancoDeRegs_tb is
 	component bancoDeRegs
-	port (
+	port(
 		wrEnable: in std_logic;
 		clk: in std_logic;
 		reset: in std_logic;
 		regA, regB, regDest: in unsigned (2 downto 0);
 		dataA, dataB : out unsigned(15 downto 0);
+		flagZout : out std_logic;
 		wrData : in unsigned(15 downto 0)
-	);
+		);
 	end component;
 	constant period_time : time := 100 ns;
 	signal finished : std_logic := '0';
 	signal clk, reset : std_logic;
-	signal wrEnable : std_logic;
+	signal wrEnable,flagZout : std_logic;
 	signal dataA,dataB,wrData : unsigned(15 downto 0);
 	signal regA,regB,regDest : unsigned(2 downto 0);
 	
@@ -34,6 +35,7 @@ architecture bancoDeRegs_tb_arch of bancoDeRegs_tb is
 			regA => regA,
 			regB=> regB,
 			regDest=>regDest,
+			flagZout=>flagZout,
 			wrData=>wrData
 		);
 	
@@ -66,6 +68,19 @@ architecture bancoDeRegs_tb_arch of bancoDeRegs_tb is
 		process -- sinais dos casos de teste (p.ex.)
 			 begin
 				--Registra valores em cada reg
+				wait for period_time*3;
+				wrEnable <= '1';
+				wrData <= "0000000000000000";
+				wait for period_time*2;
+				wrData <= "0000000000010000";
+				wait for period_time*2;
+				wrData <= "0000000000000000";
+				wait for period_time*2;
+				wrData <= "0000000000010010";
+				wait for period_time*2;
+				wrData <= "0000000000000000";
+				wait for period_time*2;
+				
 				wait for period_time*3;
 				wrEnable <= '1';
 				wrData <= "0000000000000001";
