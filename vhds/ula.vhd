@@ -24,14 +24,14 @@ architecture ULA_arch of ULA is
 	 );
 	end component;
 	
-	component MUX_10x1
+	component MUX_16x1
 		port (
-			E0,E1,E2,E3,E4,E5,E6,E7,E8,E9 : in unsigned(15 downto 0);
+			E0,E1,E2,E3,E4,E5,E6,E7,E8,E9,E10,E11,E12,E13,E14,E15 : in unsigned(15 downto 0);
 			C : in unsigned(3 downto 0);
 			S : out unsigned(15 downto 0)
 		);
 	end component;
-	signal Soma,Sub,Inc,Dec,Mov,E7,E8,E9 : unsigned(15 downto 0);
+	signal Soma,Sub,Inc,Dec,Mov,E7,E8,E9,E10,E11,E12,E13,E14,E15 : unsigned(15 downto 0);
 	begin
 		
 		op: operations port map (
@@ -44,21 +44,34 @@ architecture ULA_arch of ULA is
 			Mov=>Mov
 		);
 		
-		mux: MUX_10x1 port map (
-			E0 => Soma,
-			E1 => Soma,
-			E2 => Sub,
-			E3 => Sub,
-			E4 => Inc,
-			E5 => Dec,
-			E6 => Mov,
-			E7 => Mov,
+		mux: MUX_16x1 port map (
+			E0 => Soma, --0000
+			E1 => Soma, --0001
+			E2 => Sub, --0010
+			E3 => Sub, --0011
+			E4 => Inc, --0100
+			E5 => Dec, --0101
+			E6 => Mov, --0110
+			E7 => Mov, --0111
 			E8 => E8,
 			E9 => E9,
+			E10 => E10,
+			E11 => E11,
+			E12 => E12,
+			E13 => E13,
+			E14 => E14,
+			E15 => E15,
+			
 			C=>C,
 			S=>S
 		);
 		E8 <= "0000000000000000";
 		E9 <= "0000000000000000";
+		E10 <= "0000000000000000";
+		E11 <= "0000000000000000";
+		E12 <= "0000000000000000";
+		E13 <= "0000000000000000";
+		E14 <= "0000000000000000";
+		E15 <= "0000000000000000";
 		
 end architecture;
