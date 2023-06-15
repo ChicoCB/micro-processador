@@ -5,10 +5,11 @@ use ieee.numeric_std.all;
 entity bank_and_ula is
 	port (
 		regA,regB,regDest : in unsigned(2 downto 0);
-		wrEnable,reset,clk,immediate : in std_logic;
+		wrEnable,reset,clk,immediate, ram_or_ula : in std_logic;
 		flagZout : out std_logic;
 		operation : in unsigned(3 downto 0);
-		dataOut : out unsigned(15 downto 0);
+		dataOut,dataA : out unsigned(15 downto 0);
+		ramOut : in unsigned(15 downto 0);
 		extConst : in unsigned(15 downto 0)
 	);
 end entity;
@@ -44,7 +45,7 @@ architecture bank_and_ula_arch of bank_and_ula is
 		);
 	end component;
 	 
-	signal ulaInA, ulaInB, dataB, ulaResult : unsigned (15 downto 0);
+	signal ulaInA, ulaInB, dataB, ulaResult, bankWrData : unsigned (15 downto 0);
 	
 	begin
 		banco : bancoDeRegs port map (
@@ -57,7 +58,7 @@ architecture bank_and_ula_arch of bank_and_ula is
 			dataA => ulaInA,
 			dataB => dataB,
 			flagZout=>flagZout,
-			wrData => ulaResult
+			wrData => bankWrData
 		);
 		
 		ula1 : ULA port map (
@@ -67,13 +68,23 @@ architecture bank_and_ula_arch of bank_and_ula is
 			S => ulaResult
 		);
 		
+		--Decide se a entrada B da ula será uma constante da instrução ou valor de um reg do banco
 		mux : MUX_2x1 port map (
 			E0 => dataB,
 			E1 => extConst,
 			C => immediate,
 			S => ulaInB
 		);
+		
+		--Decide se vai ser escrito saída da ula ou da ram no banco
+		mux2 : MUX_2x1 port map (
+			E0 => ulaResult,
+			E1 => ramOut,
+			C => ram_or_ula,
+			S => bankWrData
+		);
 	
+		dataA <= ulaInA;
 		dataOut <= ulaResult;
 	
 end architecture;

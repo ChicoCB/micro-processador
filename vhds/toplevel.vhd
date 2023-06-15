@@ -14,9 +14,9 @@ architecture toplevel_arch of toplevel is
 			instruction: in unsigned (13 downto 0);
 			opcode: out unsigned (3 downto 0);
 			regSrc: out unsigned (2 downto 0);
-			regDest: out unsigned (2 downto 0);
-			const: out unsigned (6 downto 0);
-			jump_enable_JMP,jump_enable_Z, bank_wrEnable, immediate: out std_logic
+			regDest, readAdr, regA: out unsigned (2 downto 0);
+			const: out unsigned (6 downto 0); 
+			jump_enable_JMP,jump_enable_Z, bank_wrEnable, immediate, ram_wrEnable, ram_or_ula: out std_logic
 		);
 	end component;
 
@@ -72,20 +72,31 @@ architecture toplevel_arch of toplevel is
 	component bank_and_ula
 		port(
 			regA,regB,regDest : in unsigned(2 downto 0);
-			wrEnable,reset,clk,immediate : in std_logic;
+			wrEnable,reset,clk,immediate, ram_or_ula : in std_logic;
 			flagZout : out std_logic;
 			operation : in unsigned(3 downto 0);
-			dataOut : out unsigned(15 downto 0);
+			dataOut,dataA : out unsigned(15 downto 0);
+			ramOut : in unsigned(15 downto 0);
 			extConst : in unsigned(15 downto 0)
 		);
 	end component;
 
+	component ram
+		port(
+			 clk : in std_logic;
+			 endereco : in unsigned(6 downto 0);
+			 wr_en : in std_logic;
+			 dado_in : in unsigned(15 downto 0);
+			 dado_out : out unsigned(15 downto 0)
+		 );
+	end component;
+
     signal pc_to_adder, adder_to_mux, mux_to_pc,const_dec,const: unsigned (6 downto 0);
-	signal extConst: unsigned (15 downto 0);
+	signal extConst, ulaResult, ram_to_bank, bankRegA_to_ramaddr: unsigned (15 downto 0);
     signal rom_to_reg, reg_to_decoder: unsigned (13 downto 0);
     signal opcode: unsigned (3 downto 0);
-    signal jump_enable_Z,flagZout,jump_enable_JMP,jump_enable, pc_wrEnable, bank_wrEnableDec, instReg_wrEnable, bank_wrEnable, immediate: std_logic;
-	signal regSrc, regDest: unsigned (2 downto 0);
+    signal jump_enable_Z,flagZout,jump_enable_JMP,jump_enable, pc_wrEnable, bank_wrEnableDec, instReg_wrEnable, bank_wrEnable, immediate, ram_wrEnable, ula_or_ram: std_logic;
+	signal regSrc, regDest, readAdr, regA: unsigned (2 downto 0);
 	signal state : unsigned (1 downto 0);
 
 	begin
@@ -98,7 +109,11 @@ architecture toplevel_arch of toplevel is
 			regSrc => regSrc,
 			regDest => regDest,
 			immediate => immediate,
-			opcode => opcode
+			ram_or_ula => ula_or_ram,
+			opcode => opcode,
+			ram_wrEnable=>ram_wrEnable,
+			readAdr => readAdr,
+			regA => regA
 		);
 
 		maq_estados1 : maq_estados port map(
@@ -147,11 +162,23 @@ architecture toplevel_arch of toplevel is
 			immediate => immediate,
 			extConst => extConst,
 			wrEnable => bank_wrEnable,
-			regA => regDest,
+			regA => regA,
 			regB => regSrc,
 			regDest => regDest,
 			flagZout=>flagZout,
-			operation => opcode
+			ramOut=>ram_to_bank,
+			operation => opcode,
+			ram_or_ula => ula_or_ram,
+			dataOut=>ulaResult,
+			dataA => bankRegA_to_ramaddr
+		);
+		
+		ram1: ram port map (
+			clk => clk,
+			endereco=>bankRegA_to_ramaddr(6 downto 0),
+			wr_en=>ram_wrEnable,
+			dado_out=>ram_to_bank,
+			dado_in=>ulaResult
 		);
 		
 		const <=  (pc_to_adder + const_dec) when (jump_enable_Z = '1' and flagZout = '0') else const_dec;
