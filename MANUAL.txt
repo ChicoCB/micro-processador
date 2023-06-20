@@ -1,0 +1,45 @@
+INSTRUCTIONS MANUAL (14 bits) - INTEL 8051
+
+GENERAL INSTRUCTIONS:
+
+	FORMAT REG - REG :
+		
+		OPCODE (4 bits) - REG DEST (3 BITS) - REG SRC (3 BITS) - IGNORE (4 BITS) 
+
+		ADD A,Rx       --> 0000
+		SUB A,Rx       --> 0010
+		MOV Rx, Ry     --> 0110
+	
+	FORMAT REG - CONST :
+		
+		OPCODE (4 bits) - REG DEST (3 BITS) - CONST (7 BITS)
+		
+		ADD A,Const    --> 0001
+		SUB A,Const    --> 0011
+		MOV Rx, Const  --> 0111
+	
+	FORMAT REG:
+		
+		OPCODE (4 bits) - REG DEST (3 BITS) - IGNORE (7 BITS)
+	
+		INC Rx         --> 0100
+		DEC Rx         --> 0101
+	
+MEMORY INSTRUCTIONS:
+
+	FORMAT REG - REG:
+		
+		OPCODE (4 bits) - ADDRESS (7 BITS) - REG DEST (3 BITS)
+
+		MOV Rx, @Ry  --> 1000 (read)
+		MOV @Rx, Ry  --> 1001 (write)
+
+BRANCH INSTRUCTIONS:
+
+	FORMAT ADDR:
+		
+		OPCODE (4 bits) - IGNORE (3 BITS) - ADDRESS (7 BITS)
+
+	JNZ @addr    --> 1110
+
+	
