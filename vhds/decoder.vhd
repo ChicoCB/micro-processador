@@ -9,7 +9,7 @@ entity decoder is
         regSrc: out unsigned (2 downto 0);
         regDest, readAdr, regA: out unsigned (2 downto 0);
         const: out unsigned (6 downto 0); 
-        jump_enable_JMP,jump_enable_Z, bank_wrEnable, immediate, ram_wrEnable, ram_or_ula: out std_logic
+        jump_enable_JMP,jump_enable_Z, bank_wrEnable, immediate, ram_wrEnable, ram_or_ula, wrFlagZEnable: out std_logic
     );
 end entity;
 
@@ -34,6 +34,10 @@ architecture decoder_arch of decoder is
 		--0: ula, 1:ram
 		ram_or_ula <= '1' when instruction(13 downto 10) = "1000" else
 		'0';
+
+        wrFlagZEnable <= '1' when instruction(13 downto 10) = "0000" or instruction(13 downto 10) = "0001" or instruction(13 downto 10) = "0010"
+        or instruction(13 downto 10) = "011" else
+        '0';
 
         opcode <= instruction(13 downto 10);
         regDest <= instruction(6 downto 4) when instruction(13 downto 10) = "1000" else instruction(9 downto 7);

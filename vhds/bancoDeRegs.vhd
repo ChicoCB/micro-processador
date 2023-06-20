@@ -4,6 +4,7 @@ use ieee.numeric_std.all;
 
 entity bancoDeRegs is
 	port(
+		wrFlagZEnable: in std_logic;
 		wrEnable: in std_logic;
 		clk: in std_logic;
 		reset: in std_logic;
@@ -44,7 +45,7 @@ architecture bancoDeRegs_arch of bancoDeRegs is
 	
 	signal r0out,r1out,r2out,r3out,r4out,r5out,r6out,r7out: unsigned (15 downto 0); --Saídas de cada reg
 	signal wrEnableR1,wrEnableR2,wrEnableR3,wrEnableR4,wrEnableR5,wrEnableR6,wrEnableR7 : std_logic; --wrEnable de cada reg
-	signal dInZ : std_logic; --Sinais flag Z
+	signal dInZ, wrZ : std_logic; --Sinais flag Z
 
 	begin
 	
@@ -118,7 +119,7 @@ architecture bancoDeRegs_arch of bancoDeRegs is
 			clk => clk,
 			reset=>reset,
 			dOut => flagZout,
-			wrEnable=>wrEnable
+			wrEnable=>wrZ
 		);
 		
 		muxA: MUX_8x1 port map ( --Mux que decide a saída dataA
@@ -146,6 +147,7 @@ architecture bancoDeRegs_arch of bancoDeRegs is
 			S => dataB
 		);
 		
+		wrZ <= '1' when wrFlagZEnable = '1' and wrEnable = '1' else '0';
 		dInZ <= '1' when wrData = "0000000000000000" else '0'; --Seta flagZ
 	
 end architecture;

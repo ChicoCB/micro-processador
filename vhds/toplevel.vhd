@@ -16,7 +16,7 @@ architecture toplevel_arch of toplevel is
 			regSrc: out unsigned (2 downto 0);
 			regDest, readAdr, regA: out unsigned (2 downto 0);
 			const: out unsigned (6 downto 0); 
-			jump_enable_JMP,jump_enable_Z, bank_wrEnable, immediate, ram_wrEnable, ram_or_ula: out std_logic
+			jump_enable_JMP,jump_enable_Z, bank_wrEnable, immediate, ram_wrEnable, ram_or_ula, wrFlagZEnable: out std_logic
 		);
 	end component;
 
@@ -71,6 +71,7 @@ architecture toplevel_arch of toplevel is
 
 	component bank_and_ula
 		port(
+			wrFlagZEnable: in std_logic;
 			regA,regB,regDest : in unsigned(2 downto 0);
 			wrEnable,reset,clk,immediate, ram_or_ula : in std_logic;
 			flagZout : out std_logic;
@@ -96,11 +97,13 @@ architecture toplevel_arch of toplevel is
     signal rom_to_reg, reg_to_decoder: unsigned (13 downto 0);
     signal opcode: unsigned (3 downto 0);
     signal jump_enable_Z,flagZout,jump_enable_JMP,jump_enable, pc_wrEnable, bank_wrEnableDec, instReg_wrEnable, bank_wrEnable, immediate, ram_wrEnable, ula_or_ram: std_logic;
+	signal wrFlagZEnable: std_logic;
 	signal regSrc, regDest, readAdr, regA: unsigned (2 downto 0);
 	signal state : unsigned (1 downto 0);
 
 	begin
 		dec1 : decoder port map(
+			wrFlagZEnable => wrFlagZEnable,
 			instruction => reg_to_decoder,
 			jump_enable_Z => jump_enable_Z,
 			jump_enable_JMP => jump_enable_JMP,
@@ -157,6 +160,7 @@ architecture toplevel_arch of toplevel is
         );
 
 		core1: bank_and_ula port map(
+			wrFlagZEnable => wrFlagZEnable,
 			clk => clk,
 			reset => reset,
 			immediate => immediate,

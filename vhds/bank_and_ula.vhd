@@ -4,6 +4,7 @@ use ieee.numeric_std.all;
 
 entity bank_and_ula is
 	port (
+		wrFlagZEnable: in std_logic;
 		regA,regB,regDest : in unsigned(2 downto 0);
 		wrEnable,reset,clk,immediate, ram_or_ula : in std_logic;
 		flagZout : out std_logic;
@@ -35,6 +36,7 @@ architecture bank_and_ula_arch of bank_and_ula is
 	
 	component bancoDeRegs 
 		port(
+			wrFlagZEnable: in std_logic;
 			wrEnable: in std_logic;
 			clk: in std_logic;
 			reset: in std_logic;
@@ -46,9 +48,11 @@ architecture bank_and_ula_arch of bank_and_ula is
 	end component;
 	 
 	signal ulaInA, ulaInB, dataB, ulaResult, bankWrData : unsigned (15 downto 0);
+	signal opcode: unsigned (3 downto 0);
 	
 	begin
 		banco : bancoDeRegs port map (
+			wrFlagZEnable => wrFlagZEnable,
 			wrEnable => wrEnable,
 			reset => reset,
 			clk => clk,
