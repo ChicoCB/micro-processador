@@ -7,7 +7,8 @@ entity ULA is
 		A : in unsigned(15 downto 0);
 		B : in unsigned(15 downto 0);
 		C : in unsigned(3 downto 0);
-		S : out unsigned(15 downto 0)
+		S : out unsigned(15 downto 0);
+		Equals : out std_logic
 	);
 end entity;
 
@@ -20,7 +21,8 @@ architecture ULA_arch of ULA is
 		Sub: out unsigned(15 downto 0);
 		Inc: out unsigned(15 downto 0);
 		Dec: out unsigned(15 downto 0);
-		Mov: out unsigned(15 downto 0)
+		Mov: out unsigned(15 downto 0);
+		A_menor_B: out unsigned(15 downto 0)
 	 );
 	end component;
 	
@@ -31,7 +33,7 @@ architecture ULA_arch of ULA is
 			S : out unsigned(15 downto 0)
 		);
 	end component;
-	signal Soma,Sub,Inc,Dec,Mov,E7,E8,E9,E10,E11,E12,E13,E14,E15 : unsigned(15 downto 0);
+	signal Soma,Sub,Inc,Dec,Mov,A_menor_B,E7,E8,E9,E10,E11,E12,E13,E14,E15 : unsigned(15 downto 0);
 	begin
 		
 		op: operations port map (
@@ -41,6 +43,7 @@ architecture ULA_arch of ULA is
 			Sub=>Sub,
 			Inc=>Inc,
 			Dec => Dec,
+			A_menor_B=>A_menor_B,
 			Mov=>Mov
 		);
 		
@@ -53,21 +56,22 @@ architecture ULA_arch of ULA is
 			E5 => Dec, --0101
 			E6 => Mov, --0110
 			E7 => Mov, --0111 MOV R, #immediate
-			E8 => Mov, --1000 MOV R, @R - read (invertido)
+			E8 => Mov, --1000 MOV R, @R - read (instr. invertida)
 			E9 => Mov, --1001 MOV @R, R - write
 			E10 => E10, --1010
 			E11 => E11, --1011
-			E12 => E12, --1100
-			E13 => E13, --1101
+			E12 => A_menor_B, --1100 CNJE
+			E13 => E13, --1101 JC
 			E14 => E14, --1110 JNZ
 			E15 => E15, --1111 jump
 			
 			C=>C,
 			S=>S
 		);
+		Equals <= '1' when A=B else '0';
+		
 		E10 <= "0000000000000000";
 		E11 <= "0000000000000000";
-		E12 <= "0000000000000000";
 		E13 <= "0000000000000000";
 		E14 <= "0000000000000000";
 		E15 <= "0000000000000000";

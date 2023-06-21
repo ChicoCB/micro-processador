@@ -4,13 +4,13 @@ use ieee.numeric_std.all;
 
 entity bancoDeRegs is
 	port(
-		wrFlagZEnable: in std_logic;
+		wrFlagZEnable, wrFlagCEnable: in std_logic;
 		wrEnable: in std_logic;
 		clk: in std_logic;
 		reset: in std_logic;
 		regA, regB, regDest: in unsigned (2 downto 0);
 		dataA, dataB : out unsigned(15 downto 0);
-		flagZout : out std_logic;
+		flagZout, flagCOut : out std_logic;
 		wrData : in unsigned(15 downto 0)
 		);
 		
@@ -45,7 +45,7 @@ architecture bancoDeRegs_arch of bancoDeRegs is
 	
 	signal r0out,r1out,r2out,r3out,r4out,r5out,r6out,r7out: unsigned (15 downto 0); --Saídas de cada reg
 	signal wrEnableR1,wrEnableR2,wrEnableR3,wrEnableR4,wrEnableR5,wrEnableR6,wrEnableR7 : std_logic; --wrEnable de cada reg
-	signal dInZ, wrZ : std_logic; --Sinais flag Z
+	signal dInZ, dInC, wrZ, wrC : std_logic; --Sinais flag Z
 
 	begin
 	
@@ -121,6 +121,13 @@ architecture bancoDeRegs_arch of bancoDeRegs is
 			dOut => flagZout,
 			wrEnable=>wrZ
 		);
+		flagC: reg1bit port map (
+			dIn => dInC,
+			clk => clk,
+			reset=>reset,
+			dOut => flagCOut,
+			wrEnable=>wrC
+		);
 		
 		muxA: MUX_8x1 port map ( --Mux que decide a saída dataA
 			E0 => r0out,
@@ -148,6 +155,8 @@ architecture bancoDeRegs_arch of bancoDeRegs is
 		);
 		
 		wrZ <= '1' when wrFlagZEnable = '1' and wrEnable = '1' else '0';
+		wrC <= '1' when wrFlagCEnable = '1' else '0';
 		dInZ <= '1' when wrData = "0000000000000000" else '0'; --Seta flagZ
+		dInC <= '1' when wrData = "0000000000000001" else '0'; --Seta bitC
 	
 end architecture;

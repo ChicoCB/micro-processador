@@ -15,8 +15,9 @@ architecture toplevel_arch of toplevel is
 			opcode: out unsigned (3 downto 0);
 			regSrc: out unsigned (2 downto 0);
 			regDest, readAdr, regA: out unsigned (2 downto 0);
-			const: out unsigned (6 downto 0); 
-			jump_enable_JMP,jump_enable_Z, bank_wrEnable, immediate, ram_wrEnable, ram_or_ula, wrFlagZEnable: out std_logic
+			const: out unsigned (6 downto 0);
+			const4bits: out unsigned (3 downto 0);
+			jump_enable_JMP,jump_enable_Z, jump_enable_C, jump_enable_CNJZ, bank_wrEnable, immediate, ram_wrEnable, ram_or_ula, wrFlagZEnable, wrFlagCEnable: out std_logic
 		);
 	end component;
 
@@ -70,11 +71,11 @@ architecture toplevel_arch of toplevel is
     end component;
 
 	component bank_and_ula
-		port(
-			wrFlagZEnable: in std_logic;
+		port (
+			wrFlagZEnable, wrFlagCEnable: in std_logic;
 			regA,regB,regDest : in unsigned(2 downto 0);
 			wrEnable,reset,clk,immediate, ram_or_ula : in std_logic;
-			flagZout : out std_logic;
+			flagZout, flagCOut, Equals : out std_logic;
 			operation : in unsigned(3 downto 0);
 			dataOut,dataA : out unsigned(15 downto 0);
 			ramOut : in unsigned(15 downto 0);
@@ -96,16 +97,19 @@ architecture toplevel_arch of toplevel is
 	signal extConst, ulaResult, ram_to_bank, bankRegA_to_ramaddr: unsigned (15 downto 0);
     signal rom_to_reg, reg_to_decoder: unsigned (13 downto 0);
     signal opcode: unsigned (3 downto 0);
-    signal jump_enable_Z,flagZout,jump_enable_JMP,jump_enable, pc_wrEnable, bank_wrEnableDec, instReg_wrEnable, bank_wrEnable, immediate, ram_wrEnable, ula_or_ram: std_logic;
-	signal wrFlagZEnable: std_logic;
+    signal jump_enable_Z,jump_enable_C,flagZout,flagCOut,jump_enable_JMP, jump_enable_CNJZ,jump_enable, pc_wrEnable, bank_wrEnableDec, instReg_wrEnable, bank_wrEnable, immediate, ram_wrEnable, ula_or_ram, Equals: std_logic;
+	signal wrFlagZEnable, wrFlagCEnable: std_logic;
 	signal regSrc, regDest, readAdr, regA: unsigned (2 downto 0);
 	signal state : unsigned (1 downto 0);
 
 	begin
 		dec1 : decoder port map(
 			wrFlagZEnable => wrFlagZEnable,
+			wrFlagCEnable => wrFlagCEnable,
 			instruction => reg_to_decoder,
 			jump_enable_Z => jump_enable_Z,
+			jump_enable_C => jump_enable_C,
+			jump_enable_CNJZ=>jump_enable_CNJZ,
 			jump_enable_JMP => jump_enable_JMP,
 			const => const_dec,
 			bank_wrEnable => bank_wrEnableDec,
@@ -161,6 +165,7 @@ architecture toplevel_arch of toplevel is
 
 		core1: bank_and_ula port map(
 			wrFlagZEnable => wrFlagZEnable,
+			wrFlagCEnable => wrFlagCEnable,
 			clk => clk,
 			reset => reset,
 			immediate => immediate,
@@ -170,11 +175,13 @@ architecture toplevel_arch of toplevel is
 			regB => regSrc,
 			regDest => regDest,
 			flagZout=>flagZout,
+			flagCOut=>flagCOut,
 			ramOut=>ram_to_bank,
 			operation => opcode,
 			ram_or_ula => ula_or_ram,
 			dataOut=>ulaResult,
-			dataA => bankRegA_to_ramaddr
+			dataA => bankRegA_to_ramaddr,
+			Equals=>Equals
 		);
 		
 		ram1: ram port map (
@@ -185,8 +192,8 @@ architecture toplevel_arch of toplevel is
 			dado_in=>ulaResult
 		);
 		
-		const <=  (pc_to_adder + const_dec) when (jump_enable_Z = '1' and flagZout = '0') else const_dec;
-		jump_enable <= '1' when jump_enable_JMP = '1' OR (jump_enable_Z = '1' and flagZout = '0') else '0';
+		const <=  (pc_to_adder + const_dec) when ((jump_enable_Z = '1' and flagZout = '0') or (jump_enable_CNJZ = '1' and Equals = '0') or (jump_enable_C = '1' and flagCOut = '1')) else const_dec;
+		jump_enable <= '1' when jump_enable_JMP = '1' OR (jump_enable_Z = '1' and flagZout = '0') or (jump_enable_CNJZ = '1' and Equals = '0') or (jump_enable_C = '1' and flagCOut = '1') else '0';
 		pc_wrEnable <= '1' when state = "10" else '0';
 		instReg_wrEnable <= '1' when state = "01" else '0';
 		bank_wrEnable <= '1' when state = "10" and bank_wrEnableDec = '1' else '0';

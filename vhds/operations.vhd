@@ -10,7 +10,8 @@ entity operations is
 		Sub: out unsigned(15 downto 0);
 		Inc: out unsigned(15 downto 0);
 		Dec: out unsigned(15 downto 0);
-		Mov: out unsigned(15 downto 0)
+		Mov: out unsigned(15 downto 0);
+		A_menor_B: out unsigned(15 downto 0)
 	);
 end entity;
 
@@ -22,4 +23,5 @@ architecture operations_arch of operations is
 		Inc <= A + 1;
 		Dec <= A - 1;
 		Mov <= B;
+		A_menor_B <= "0000000000000001" when (A < B) else "0000000000000000";
 end architecture;

@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 
 entity bank_and_ula is
 	port (
-		wrFlagZEnable: in std_logic;
+		wrFlagZEnable, wrFlagCEnable: in std_logic;
 		regA,regB,regDest : in unsigned(2 downto 0);
 		wrEnable,reset,clk,immediate, ram_or_ula : in std_logic;
-		flagZout : out std_logic;
+		flagZout, flagCOut, Equals : out std_logic;
 		operation : in unsigned(3 downto 0);
 		dataOut,dataA : out unsigned(15 downto 0);
 		ramOut : in unsigned(15 downto 0);
@@ -22,7 +22,8 @@ architecture bank_and_ula_arch of bank_and_ula is
 			A : in unsigned(15 downto 0);
 			B : in unsigned(15 downto 0);
 			C : in unsigned(3 downto 0);
-			S : out unsigned(15 downto 0)
+			S : out unsigned(15 downto 0);
+			Equals : out std_logic
 		);
 	end component;
 	
@@ -36,13 +37,13 @@ architecture bank_and_ula_arch of bank_and_ula is
 	
 	component bancoDeRegs 
 		port(
-			wrFlagZEnable: in std_logic;
+			wrFlagZEnable, wrFlagCEnable: in std_logic;
 			wrEnable: in std_logic;
 			clk: in std_logic;
 			reset: in std_logic;
 			regA, regB, regDest: in unsigned (2 downto 0);
 			dataA, dataB : out unsigned(15 downto 0);
-			flagZout : out std_logic;
+			flagZout, flagCOut : out std_logic;
 			wrData : in unsigned(15 downto 0)
 		);
 	end component;
@@ -53,6 +54,7 @@ architecture bank_and_ula_arch of bank_and_ula is
 	begin
 		banco : bancoDeRegs port map (
 			wrFlagZEnable => wrFlagZEnable,
+			wrFlagCEnable=>wrFlagCEnable,
 			wrEnable => wrEnable,
 			reset => reset,
 			clk => clk,
@@ -62,6 +64,7 @@ architecture bank_and_ula_arch of bank_and_ula is
 			dataA => ulaInA,
 			dataB => dataB,
 			flagZout=>flagZout,
+			flagCOut=>flagCOut,
 			wrData => bankWrData
 		);
 		
@@ -69,6 +72,7 @@ architecture bank_and_ula_arch of bank_and_ula is
 			A => ulaInA,
 			B => ulaInB,
 			C => operation,
+			Equals=>Equals,
 			S => ulaResult
 		);
 		

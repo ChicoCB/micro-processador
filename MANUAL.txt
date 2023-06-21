@@ -36,10 +36,16 @@ MEMORY INSTRUCTIONS:
 
 BRANCH INSTRUCTIONS:
 
-	FORMAT ADDR:
+	FORMAT ADDR(RELATIVE):
 		
 		OPCODE (4 bits) - IGNORE (3 BITS) - ADDRESS (7 BITS)
 
-	JNZ @addr    --> 1110
+		JNZ @addr    --> 1110
+
+		JC @addr     --> 1101
+	
+		CNJE Rx,Rx,@addr --> 1100
+
+		JMP @addr    --> 1111
 
 	
