@@ -1,79 +1,79 @@
 v 4
-file / "D:\User\Desktop\micro-processador\vhds\unitadder.vhd" "5510fabb66b75ff7ffb6a013b5590983b9c0b2f6" "20230621014712.227":
+file / "D:\Repositorios\micro-processador\vhds\unitadder.vhd" "13f9206a4fd642bedc3f85f31e85713b0a0d03a4" "20230621223048.829":
   entity unitadder at 1( 0) + 0 on 61;
-  architecture unitadder_arch of unitadder at 12( 218) + 0 on 62;
-file / "D:\User\Desktop\micro-processador\vhds\toplevel_tb.vhd" "acda43ace5523093c8160b4aaa6120eee41e7324" "20230621014712.178":
+  architecture unitadder_arch of unitadder at 12( 207) + 0 on 62;
+file / "D:\Repositorios\micro-processador\vhds\toplevel_tb.vhd" "1bd1409f581dc448b775b20561a1fabf85dbf305" "20230621223048.734":
   entity toplevel_tb at 1( 0) + 0 on 57;
   architecture toplevel_tb_arch of toplevel_tb at 8( 105) + 0 on 58;
-file / "D:\User\Desktop\micro-processador\vhds\rom.vhd" "258ae724e3f370ef88faaede7906a2cc41ea3ea2" "20230621014712.126":
+file / "D:\Repositorios\micro-processador\vhds\rom.vhd" "79339083c185f2602e8c9db8f8fec13a6ae4e5b2" "20230621223048.641":
   entity rom at 1( 0) + 0 on 53;
-  architecture rom_arch of rom at 13( 237) + 0 on 54;
-file / "D:\User\Desktop\micro-processador\vhds\reg16bits_tb.vhd" "a34e595674f3e769fb815b039c8acd44fba140f9" "20230621014712.069":
+  architecture rom_arch of rom at 13( 225) + 0 on 54;
+file / "D:\Repositorios\micro-processador\vhds\reg16bits_tb.vhd" "d04c3e027bcd1412db289b267da346f9cba8426b" "20230621223048.550":
   entity reg16bits_tb at 1( 0) + 0 on 49;
-  architecture reg16bits_tb_arch of reg16bits_tb at 8( 106) + 0 on 50;
-file / "D:\User\Desktop\micro-processador\vhds\reg14bits.vhd" "74e156e85133b04763391e5f501b28ebbed6dfa2" "20230621014711.996":
+  architecture reg16bits_tb_arch of reg16bits_tb at 8( 99) + 0 on 50;
+file / "D:\Repositorios\micro-processador\vhds\reg14bits.vhd" "74e156e85133b04763391e5f501b28ebbed6dfa2" "20230621223048.452":
   entity reg14bits at 1( 0) + 0 on 45;
   architecture reg14bits_arch of reg14bits at 14( 268) + 0 on 46;
-file / "D:\User\Desktop\micro-processador\vhds\PC.vhd" "343ec0ed9f7ff4b417053189813f6caaf6db5be9" "20230621014711.939":
+file / "D:\Repositorios\micro-processador\vhds\PC.vhd" "1eb29c923f8062047d6dc9386b7f334dbf74234c" "20230621223048.347":
   entity pc at 1( 0) + 0 on 41;
-  architecture pc_arch of pc at 13( 256) + 0 on 42;
-file / "D:\User\Desktop\micro-processador\vhds\MUX_8x1.vhd" "ef2156aa27fc596b1017cdaba01b4eb2d78766e2" "20230621014711.889":
+  architecture pc_arch of pc at 13( 244) + 0 on 42;
+file / "D:\Repositorios\micro-processador\vhds\MUX_8x1.vhd" "e2ba95c2df1801884a2ef71097456f1de72e6196" "20230621223048.247":
   entity mux_8x1 at 1( 0) + 0 on 37;
-  architecture mux_8x1_arch of mux_8x1 at 13( 243) + 0 on 38;
-file / "D:\User\Desktop\micro-processador\vhds\MUX_2x1.vhd" "400893a21d48cd56ca6c5af2af6964ad212409d5" "20230621014711.838":
+  architecture mux_8x1_arch of mux_8x1 at 13( 231) + 0 on 38;
+file / "D:\Repositorios\micro-processador\vhds\MUX_2x1.vhd" "3d8c56835ef6747824f3b28b037e2a71bf633f85" "20230621223048.151":
   entity mux_2x1 at 1( 0) + 0 on 33;
-  architecture mux_2x1_arch of mux_2x1 at 13( 214) + 0 on 34;
-file / "D:\User\Desktop\micro-processador\vhds\MUX_10x1.vhd" "3a0968f7dfc07ee04c14714a21c191a8c33534a0" "20230621014711.792":
+  architecture mux_2x1_arch of mux_2x1 at 13( 202) + 0 on 34;
+file / "D:\Repositorios\micro-processador\vhds\MUX_10x1.vhd" "a1a0bc60dfc1dd072c5385b5a84dd5a30e92f1d3" "20230621223048.059":
   entity mux_10x1 at 1( 0) + 0 on 29;
-  architecture mux_10x1_arch of mux_10x1 at 13( 250) + 0 on 30;
-file / "D:\User\Desktop\micro-processador\vhds\mux12bits_tb.vhd" "444d665479eb5e30eaec70488d1b07d1660599b6" "20230621014711.734":
+  architecture mux_10x1_arch of mux_10x1 at 13( 238) + 0 on 30;
+file / "D:\Repositorios\micro-processador\vhds\mux12bits_tb.vhd" "64fbda6fb347f3837aaf773d9722260694c9fa4b" "20230621223047.967":
   entity mux12bits_tb at 1( 0) + 0 on 25;
-  architecture mux12bits_tb_arch of mux12bits_tb at 8( 113) + 0 on 26;
-file / "D:\User\Desktop\micro-processador\vhds\maq_estados.vhd" "1d9f66ac270a31e5e12efde53a74bb3f54bb0592" "20230621014711.681":
+  architecture mux12bits_tb_arch of mux12bits_tb at 8( 106) + 0 on 26;
+file / "D:\Repositorios\micro-processador\vhds\maq_estados.vhd" "8e14a33c9f825fd03a2f9dc6ce21a2d9564543f5" "20230621223047.869":
   entity maq_estados at 1( 0) + 0 on 21;
-  architecture a_maq_estados of maq_estados at 14( 192) + 0 on 22;
-file / "D:\User\Desktop\micro-processador\vhds\controlunit_tb.vhd" "2b4eca570b2cbb77f753bc5c6d265d5e867b8a9d" "20230621014711.624":
+  architecture a_maq_estados of maq_estados at 14( 179) + 0 on 22;
+file / "D:\Repositorios\micro-processador\vhds\controlunit_tb.vhd" "f3a701bdc30f1e9660345528718aa82f678587db" "20230621223047.763":
   entity controlunit_tb at 1( 0) + 0 on 17;
-  architecture controlunit_tb_arch of controlunit_tb at 8( 108) + 0 on 18;
-file / "D:\User\Desktop\micro-processador\vhds\bank_and_ula.vhd" "43592446d942e7a4ad8718082869d9b3745ae816" "20230621014711.566":
+  architecture controlunit_tb_arch of controlunit_tb at 8( 101) + 0 on 18;
+file / "D:\Repositorios\micro-processador\vhds\bank_and_ula.vhd" "43592446d942e7a4ad8718082869d9b3745ae816" "20230621223047.659":
   entity bank_and_ula at 1( 0) + 0 on 13;
   architecture bank_and_ula_arch of bank_and_ula at 19( 494) + 0 on 14;
-file / "D:\User\Desktop\micro-processador\vhds\bancoDeRegs.vhd" "5caeed0b19ead33d4f6a0b17e9c0942d230a1da5" "20230621014711.537":
+file / "D:\Repositorios\micro-processador\vhds\bancoDeRegs.vhd" "337e91d458a70e1d6ef5ad27cc2d89614b457e4f" "20230621223047.612":
   entity bancoderegs at 1( 0) + 0 on 11;
-  architecture bancoderegs_arch of bancoderegs at 19( 421) + 0 on 12;
-file / "D:\User\Desktop\micro-processador\vhds\controlunit.vhd" "180d0a9cc5fe1017317aeb636a63b3f29571defc" "20230621014711.595":
+  architecture bancoderegs_arch of bancoderegs at 19( 403) + 0 on 12;
+file / "D:\Repositorios\micro-processador\vhds\controlunit.vhd" "14d026782215c22ccdffdba05467e461d680bafe" "20230621223047.712":
   entity controlunit at 1( 0) + 0 on 15;
-  architecture controlunit_arch of controlunit at 12( 212) + 0 on 16;
-file / "D:\User\Desktop\micro-processador\vhds\decoder.vhd" "1fa6d0834924ccbff1af583d138844f724288c60" "20230621014711.653":
+  architecture controlunit_arch of controlunit at 12( 201) + 0 on 16;
+file / "D:\Repositorios\micro-processador\vhds\decoder.vhd" "1fa6d0834924ccbff1af583d138844f724288c60" "20230621223047.819":
   entity decoder at 1( 0) + 0 on 19;
   architecture decoder_arch of decoder at 17( 578) + 0 on 20;
-file / "D:\User\Desktop\micro-processador\vhds\mux12bits.vhd" "d8e00b627eea4956f276812e30a58f0f3afd6446" "20230621014711.709":
+file / "D:\Repositorios\micro-processador\vhds\mux12bits.vhd" "8243b0212a76088e9f051e83983638b347768100" "20230621223047.918":
   entity mux12bits at 1( 0) + 0 on 23;
-  architecture mux12bits_arch of mux12bits at 14( 295) + 0 on 24;
-file / "D:\User\Desktop\micro-processador\vhds\mux7bits.vhd" "21479c5a20141a7e57e9bf5466a07601368aeab2" "20230621014711.764":
+  architecture mux12bits_arch of mux12bits at 14( 282) + 0 on 24;
+file / "D:\Repositorios\micro-processador\vhds\mux7bits.vhd" "eed3e9b3956666e1940c776b3cd6f11304c7fc93" "20230621223048.014":
   entity mux7bits at 1( 0) + 0 on 27;
-  architecture mux7bits_arch of mux7bits at 14( 291) + 0 on 28;
-file / "D:\User\Desktop\micro-processador\vhds\MUX_16x1.vhd" "0cccdbd3ab143b540010a72f07e20cb6a57df4a4" "20230621014711.816":
+  architecture mux7bits_arch of mux7bits at 14( 278) + 0 on 28;
+file / "D:\Repositorios\micro-processador\vhds\MUX_16x1.vhd" "7272b1ff5f011323f387004a650954ea778a54f5" "20230621223048.103":
   entity mux_16x1 at 1( 0) + 0 on 31;
-  architecture mux_16x1_arch of mux_16x1 at 13( 274) + 0 on 32;
-file / "D:\User\Desktop\micro-processador\vhds\MUX_4x1.vhd" "90e09c1e363d8411fc0c1a39c81f877fb24b65a8" "20230621014711.863":
+  architecture mux_16x1_arch of mux_16x1 at 13( 262) + 0 on 32;
+file / "D:\Repositorios\micro-processador\vhds\MUX_4x1.vhd" "837b6e10e7842d4e24ab3d31768c02ddf6f627d6" "20230621223048.196":
   entity mux_4x1 at 1( 0) + 0 on 35;
-  architecture mux_4x1_arch of mux_4x1 at 13( 231) + 0 on 36;
-file / "D:\User\Desktop\micro-processador\vhds\operations.vhd" "36e76e463aa5303d73868453444f908364d51d93" "20230621014711.914":
+  architecture mux_4x1_arch of mux_4x1 at 13( 219) + 0 on 36;
+file / "D:\Repositorios\micro-processador\vhds\operations.vhd" "31d7b31ba3075d60d98aa956d772c04044580c62" "20230621223048.297":
   entity operations at 1( 0) + 0 on 39;
-  architecture operations_arch of operations at 19( 409) + 0 on 40;
-file / "D:\User\Desktop\micro-processador\vhds\ram.vhd" "16aa2bb88d81f48a7ac8c97d6bb5578f980d05e7" "20230621014711.964":
+  architecture operations_arch of operations at 19( 391) + 0 on 40;
+file / "D:\Repositorios\micro-processador\vhds\ram.vhd" "d7b6452ca4ec605d25d244ccead253114fe13481" "20230621223048.404":
   entity ram at 1( 0) + 0 on 43;
-  architecture a_ram of ram at 15( 434) + 0 on 44;
-file / "D:\User\Desktop\micro-processador\vhds\reg16bits.vhd" "5d7e52e5b324d816e1d0a7ab20ee0777cd7b6cf6" "20230621014712.040":
+  architecture a_ram of ram at 15( 420) + 0 on 44;
+file / "D:\Repositorios\micro-processador\vhds\reg16bits.vhd" "4a601f8f538da6c1fc11b4361536522dcf85079e" "20230621223048.501":
   entity reg16bits at 1( 0) + 0 on 47;
-  architecture reg16bits_arch of reg16bits at 14( 268) + 0 on 48;
-file / "D:\User\Desktop\micro-processador\vhds\reg1bit.vhd" "b183ce359687c6452d3088870b69ebf8a2695567" "20230621014712.100":
+  architecture reg16bits_arch of reg16bits at 14( 255) + 0 on 48;
+file / "D:\Repositorios\micro-processador\vhds\reg1bit.vhd" "9329b175d2ea9b2fea84a2e1e965ce7f8c04545c" "20230621223048.595":
   entity reg1bit at 1( 0) + 0 on 51;
-  architecture reg1bit_arch of reg1bit at 14( 242) + 0 on 52;
-file / "D:\User\Desktop\micro-processador\vhds\toplevel.vhd" "ec2596e8d1419f4e5d04bc8933d7115fcc47f648" "20230621014712.154":
+  architecture reg1bit_arch of reg1bit at 14( 229) + 0 on 52;
+file / "D:\Repositorios\micro-processador\vhds\toplevel.vhd" "98a580f7bd73efa1777f806ecd0afb1b1e63e17b" "20230621223048.686":
   entity toplevel at 1( 0) + 0 on 55;
-  architecture toplevel_arch of toplevel at 11( 151) + 0 on 56;
-file / "D:\User\Desktop\micro-processador\vhds\ula.vhd" "441f9a93d31fcd91973fc1909cc30e6710c809a6" "20230621014712.202":
+  architecture toplevel_arch of toplevel at 11( 141) + 0 on 56;
+file / "D:\Repositorios\micro-processador\vhds\ula.vhd" "40e439d9a07017a2dec06f4da002351e66f138a7" "20230621223048.782":
   entity ula at 1( 0) + 0 on 59;
-  architecture ula_arch of ula at 15( 276) + 0 on 60;
+  architecture ula_arch of ula at 15( 262) + 0 on 60;

@@ -13,7 +13,7 @@ architecture toplevel_tb_arch of toplevel_tb is
         );
     end component;
 
-    constant period_time : time := 10 ns;
+    constant period_time : time := 4 ns;
 	signal finished : std_logic := '0';
 	signal clk, reset : std_logic;
 	
